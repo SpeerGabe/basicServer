@@ -17,7 +17,7 @@ server_socket.bind((SERVER_HOST, SERVER_PORT))
 #enables the server to accept connections, with a maximum of 5 connections
 server_socket.listen(5)
 
-print("Listening on port {SERVER_PORT}")
+print(f"Listening on port {SERVER_PORT}")
 
 #allows for sending and receiving data from clients
 while True:
@@ -30,8 +30,9 @@ while True:
         headers = request.split("\n")
         first_header_components = headers[0].split()
         
-        htpp_version = first_header_components[0]
+        htpp_method = first_header_components[0]
         path = first_header_components[1]
+        http_version = first_header_components[2]
         
         if path == "/":
             fin = open("index.html")
@@ -41,12 +42,16 @@ while True:
             #STATUS LINE -
             #HEADERS
             #MESSAGE-BODY
-            response = "hTTP/1.1 200 OK\n\n" + content
+            response = "HTTP/1.1 200 OK\n\n" + content
             client_socket.sendall(response.encode())
-            client_socket.close()
+        else:
+            #404 page if no response
+            response = "HTTP/1.1 404 Not Found\n\nContent-Type: text/html\n\n<h1>404 - Page Not Found</h1>"
+            client_socket.sendall(response.encode())
+       client_socket.close() 
 #error handling
-    except:
-#delay by one second
+    except Exception as e:
+        # prints error if one occurs
         time.sleep(1)
-        print("Error Caught!")
+        print(f"Error caught: {e}")
         continue
