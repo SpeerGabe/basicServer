@@ -1,6 +1,6 @@
 # basicServer
  
-A lightweight HTTP server built from scratch in Python using raw TCP sockets — no frameworks, no `http.server` module, no abstractions. Built for a Computer Networks course to demonstrate how HTTP actually works at the transport layer.
+A lightweight HTTP server built from scratch in Python using raw TCP sockets. Built for a Computer Networks course to demonstrate how HTTP actually works at the transport layer.
  
 ## What It Does
  
@@ -57,5 +57,5 @@ http-server/
  
 ## Course Context
  
-Built for CSCI Computer Networks at UT Martin. The goal was to understand the HTTP request/response cycle by implementing it at the socket level rather than relying on higher-level libraries.
+Built for CSCI Introduction to Computer Networks at UT Martin. The goal was to understand the HTTP request/response cycle by implementing it at the socket level rather than relying on higher-level libraries.
  
